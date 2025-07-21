@@ -128,6 +128,7 @@
   margin-bottom: 28px;
   user-select: none;
   border: 2.5px solid #1976d2;
+  /* Modern appearance preserved */
 }
 
 .tic-tac-toe-cell {
@@ -141,14 +142,48 @@
   font-weight: 700;
   color: #b0b5ba;
   cursor: pointer;
-  border: none;
-  transition: background 0.25s, color 0.17s;
+
+  /* NEW: Add black grid lines between cells */
+  border-top: 2.5px solid black;
+  border-left: 2.5px solid black;
+  border-right: none;
+  border-bottom: none;
+
+  /* Remove double borders on outer edge */
+  /* Style top row */
+  /* Only top row: no border-top */
 }
 
 .tic-tac-toe-cell[aria-disabled="true"] {
   cursor: default;
   color: #ccc;
 }
+
+/* Top row: remove top border */
+.tic-tac-toe-cell:nth-child(-n+3) {
+  border-top: none;
+}
+
+/* Left column: remove left border */
+.tic-tac-toe-cell:nth-child(3n+1) {
+  border-left: none;
+}
+
+/* Right column: add black right border */
+.tic-tac-toe-cell:nth-child(3n) {
+  border-right: 2.5px solid black;
+}
+
+/* Bottom row: add black bottom border */
+.tic-tac-toe-cell:nth-child(n+7) {
+  border-bottom: 2.5px solid black;
+}
+
+/* Keep rounded corners for modern look */
+.tic-tac-toe-cell:first-child { border-top-left-radius: 12px; }
+.tic-tac-toe-cell:nth-child(3) { border-top-right-radius: 12px; }
+.tic-tac-toe-cell:nth-child(7) { border-bottom-left-radius: 12px; }
+.tic-tac-toe-cell:last-child { border-bottom-right-radius: 12px; }
 
 .tic-tac-toe-status {
   margin-bottom: 28px;
